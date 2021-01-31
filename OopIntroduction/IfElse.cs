@@ -9,7 +9,7 @@ namespace OopIntroduction
 {
     class IfElse
     {
-        static void Main(string[] args)
+        static void MainIfElse(string[] args)
         {
             Console.WriteLine("You are above 18?");
             string userInput = Console.ReadLine();

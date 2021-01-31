@@ -30,8 +30,12 @@ namespace OopIntroduction
             string userAge = Console.ReadLine();
             var userAgeC = obj.CalculateYear(Convert.ToInt32(userAge));
             Console.WriteLine("Year age is: " + userAgeC.ToString() + " years");
+
+            bool abcd= obj.IsAdult(20);
             
-            var abc = Console.ReadLine();
+            string abc = Console.ReadLine();
+
+            var abcde = obj.IsAdult(20);
         }
     }
 
@@ -54,6 +58,18 @@ namespace OopIntroduction
             int current = DateTime.Now.Year;
             int result = current - year;
             return result;
+        }
+
+        public bool IsAdult(int age)
+        {
+            if (age > 18)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
