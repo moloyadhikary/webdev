@@ -8,7 +8,7 @@ namespace OopIntroduction
 {
     class Arrays
     {
-        public static void Main(string[] args)
+        public static void MainArray(string[] args)
         {
             string[] userFav = new string[2];
             int[] intAr = new int[20];
