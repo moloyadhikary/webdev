@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrays.cs" />
+    <Compile Include="HwOop1.cs" />
     <Compile Include="IfElse.cs" />
+    <Compile Include="List.cs" />
     <Compile Include="Loop.cs" />
+    <Compile Include="Overloading.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switch.cs" />

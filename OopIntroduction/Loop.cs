@@ -11,7 +11,7 @@ namespace OopIntroduction
 {
     class Loop
     {
-        public static void Main(string[] args)
+        public static void MainLoop(string[] args)
         {
             try
             {
