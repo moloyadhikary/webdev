@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OopIntroduction
 {
-    class Overloading
+    public class Overloading
     {
         public static void MainOverloading(string[] args)
         {
