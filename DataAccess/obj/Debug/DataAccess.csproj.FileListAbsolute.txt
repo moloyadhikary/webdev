@@ -1,0 +1,6 @@
+E:\Applications\WebDevelopment\DataAccess\bin\Debug\DataAccess.dll
+E:\Applications\WebDevelopment\DataAccess\bin\Debug\DataAccess.pdb
+E:\Applications\WebDevelopment\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+E:\Applications\WebDevelopment\DataAccess\obj\Debug\DataAccess.dll
+E:\Applications\WebDevelopment\DataAccess\obj\Debug\DataAccess.pdb
+E:\Applications\WebDevelopment\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache

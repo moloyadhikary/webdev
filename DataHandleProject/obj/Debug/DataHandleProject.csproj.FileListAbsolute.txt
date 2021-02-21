@@ -1,0 +1,10 @@
+E:\Applications\WebDevelopment\DataHandleProject\bin\Debug\DataHandleProject.exe.config
+E:\Applications\WebDevelopment\DataHandleProject\bin\Debug\DataHandleProject.exe
+E:\Applications\WebDevelopment\DataHandleProject\bin\Debug\DataHandleProject.pdb
+E:\Applications\WebDevelopment\DataHandleProject\bin\Debug\DataAccess.dll
+E:\Applications\WebDevelopment\DataHandleProject\bin\Debug\DataAccess.pdb
+E:\Applications\WebDevelopment\DataHandleProject\obj\Debug\DataHandleProject.csprojAssemblyReference.cache
+E:\Applications\WebDevelopment\DataHandleProject\obj\Debug\DataHandleProject.csproj.CoreCompileInputs.cache
+E:\Applications\WebDevelopment\DataHandleProject\obj\Debug\DataHandleProject.csproj.CopyComplete
+E:\Applications\WebDevelopment\DataHandleProject\obj\Debug\DataHandleProject.exe
+E:\Applications\WebDevelopment\DataHandleProject\obj\Debug\DataHandleProject.pdb
