@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbOperations.cs" />
+    <Compile Include="DeleteData.cs" />
     <Compile Include="GetData.cs" />
     <Compile Include="InsertData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

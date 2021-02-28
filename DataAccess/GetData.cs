@@ -22,12 +22,12 @@ namespace DataAccess
               string sql = "SELECT * FROM EmployeeInformation";
 
               using(SqlCommand cmd = new SqlCommand(sql))
-               {
-                 cmd.Connection=openCon;
-                 openCon.Open();
-                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                 da.Fill(dt);
-               }
+              {
+                  cmd.Connection=openCon;
+                  openCon.Open();
+                  SqlDataAdapter da = new SqlDataAdapter(cmd);
+                  da.Fill(dt);
+              }
             }
 
             return dt;
