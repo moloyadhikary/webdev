@@ -17,6 +17,8 @@ namespace DataHandleProject
             DbOperations dbOperations = new DbOperations();
             //insertData.InsertEmployee("Tahsan", "Khan", "E112", 1, 20000);
             
+            dbOperations.UpdateEmployee(1, "ABCD");
+            
             ReadData:
             //GetData getData = new GetData();
             Console.WriteLine("Reading data");
@@ -57,8 +59,6 @@ namespace DataHandleProject
             //}
             Console.WriteLine("Insert the Id you want to delete: ");
             var idToDelete = Convert.ToInt32(Console.ReadLine());
-
-            //DeleteData deleteData = new DeleteData();
             dbOperations.DeleteEmployee(idToDelete);
 
             goto ReadData;

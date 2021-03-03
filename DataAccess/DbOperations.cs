@@ -79,7 +79,22 @@ namespace DataAccess
         {
             using(SqlConnection openCon=new SqlConnection(conString))
             {
-                string sql = $@"delete from EmployeeInformation where Id = {id}";
+                string sql = $@"delete from EmployeeInformation where Id = {id})";
+
+                using(SqlCommand cmd = new SqlCommand(sql))
+                {
+                    cmd.Connection=openCon;
+                    openCon.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateEmployee(int id, string name)
+        {
+            using(SqlConnection openCon=new SqlConnection(conString))
+            {
+                string sql = $@"update EmployeeInformation set FirstName = '{name}' where Id = {id}";
 
                 using(SqlCommand cmd = new SqlCommand(sql))
                 {
