@@ -1,0 +1,27 @@
+﻿@model List<WebUi.Models.Employee>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h1>Total Employee: @Model.Count</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Employee ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+        <tr>
+            <td>@e.Id</td>
+            <td>@e.EmployeeId</td>
+            <td>@e.FullName</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
