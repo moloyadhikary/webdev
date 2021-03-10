@@ -11,9 +11,19 @@ namespace WebUi.Controllers
     {
         public ActionResult List()
         {
-            Employee objEmployee = new Employee();
+            var objEmployee = new Employee();
             var employeeList = objEmployee.GetEmployee();
             return View(employeeList);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            return View();
         }
     }
 }

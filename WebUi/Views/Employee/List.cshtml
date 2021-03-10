@@ -3,8 +3,14 @@
 @{
     ViewBag.Title = "List";
 }
+<br/>
 
-<h1>Total Employee: @Model.Count</h1>
+<div class="row">
+    <div class="col-sm-10"><h1>Total Employee: @Model.Count</h1></div>
+    <div class="row text-right">
+        <a href="~/Employee/Create" class="btn btn-success">Add New</a>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -18,7 +24,9 @@
         {
         <tr>
             <td>@e.Id</td>
-            <td>@e.EmployeeId</td>
+            <td>
+                <a href="~/Employee/Details?id=@e.Id">@e.EmployeeId</a>
+            </td>
             <td>@e.FullName</td>
         </tr>
         }
