@@ -19,7 +19,11 @@ namespace DataAccess
 
             using(SqlConnection openCon=new SqlConnection(conString))
             {
-                string sql = "SELECT * FROM EmployeeInformation";
+                string sql = @"SELECT 
+                                e.*
+                                    ,d.Name DepartmentName
+                                FROM EmployeeInformation e
+                                    LEFT JOIN Departments d ON e.DepartmentId = d.Id";
 
                 using(SqlCommand cmd = new SqlCommand(sql))
                 {
