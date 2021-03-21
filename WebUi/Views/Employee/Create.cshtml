@@ -3,5 +3,57 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create new employee</h2>
+<br />
+<form method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">Create new employee</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">First Name</span>
+                        <input id="firstName" name="firstName" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Last Name</span>
+                        <input id="lastName" name="lastName" type="text" class="form-control">
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Employee Id</span>
+                        <input id="employeeId" name="employeeId" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Department</span>
+                        <select id="ddlDepartment" name="ddlDepartment" class="form-control">
+                            @foreach (var item in ViewBag.Departments)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Salary</span>
+                        <input id="salary" name="salary" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <br />
+                <br />
+                <button type="submit" class="btn btn-success">Save Data</button>
+            </div>
+        </div>
+    </div>
+</form>
 

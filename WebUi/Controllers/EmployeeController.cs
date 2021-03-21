@@ -37,14 +37,52 @@ namespace WebUi.Controllers
             return View(list);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Departments = GetDepartments();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(FormCollection frm)
+        {
+            var firstName = Convert.ToString(frm["firstName"]);
+            var lastName = Convert.ToString(frm["lastName"]);
+            var employeeId = Convert.ToString(frm["employeeId"]);
+            var ddlDepartment = Convert.ToInt32(frm["ddlDepartment"]);
+            var salary = Convert.ToDecimal(frm["salary"]);
+            
+            var db = new DbOperations();
+            db.InsertEmployee(firstName, lastName, employeeId, ddlDepartment, salary);
+            
+            return RedirectToAction("List");
         }
 
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+
+        public List<Department> GetDepartments()
+        {
+            var db = new DbOperations();
+            var data = db.GetAllDepartments();
+            var list = new List<Department>();
+
+            foreach (DataRow dr in data.Rows)
+            {
+                var dep = new Department();
+
+                dep.Id = Convert.ToInt32(dr["Id"]);
+                dep.Name = Convert.ToString(dr["Name"]);
+                dep.ShortName = Convert.ToString(dr["ShortName"]);
+                
+                list.Add(dep);
+            }
+
+            return list;
         }
     }
 }
