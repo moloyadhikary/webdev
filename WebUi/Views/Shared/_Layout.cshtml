@@ -6,6 +6,9 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,9 +31,13 @@
             </div>
         </div>
     </div>
-    <div class="container body-content" style="min-height: 500px">
-        @RenderBody()
-    </div>
+<div class="container body-content" style="min-height: 500px">
+    @if (TempData["Message"] != null)
+    {
+        <h2 class="text-center">@TempData["Message"]</h2>
+    }
+    @RenderBody()
+</div>
     <hr />
     <footer>
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

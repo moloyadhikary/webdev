@@ -4,8 +4,10 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime;
 using WebUi.Models;
 using DataAccess;
+using WebUi.Models.FormModels;
 
 namespace WebUi.Controllers
 {
@@ -47,7 +49,17 @@ namespace WebUi.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection frm)
         {
+            ViewBag.Departments = GetDepartments();
+            
             var firstName = Convert.ToString(frm["firstName"]);
+
+            if (string.IsNullOrWhiteSpace(firstName))
+            {
+                TempData["Message"] = "First Name Required";
+                return View();
+            }
+            
+            
             var lastName = Convert.ToString(frm["lastName"]);
             var employeeId = Convert.ToString(frm["employeeId"]);
             var ddlDepartment = Convert.ToInt32(frm["ddlDepartment"]);
@@ -58,10 +70,47 @@ namespace WebUi.Controllers
             
             return RedirectToAction("List");
         }
+        
+        
+        //Another Way
+        [HttpGet]
+        public ActionResult Create2()
+        {
+            var departments = GetDepartments();
+            ViewBag.DepartmentList = new SelectList(departments, "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create2(CreateEmployeeModel model)
+        {
+            var departments = GetDepartments();
+            ViewBag.DepartmentList = new SelectList(departments, "Id", "Name");
+
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Message"] = "Input error found";
+                return View(model);
+            }
+            
+            var db = new DbOperations();
+            db.InsertEmployee(model.FirstName, model.LastName, model.EmployeeId, model.DepartmentId, model.Salary);
+            
+            return RedirectToAction("List");
+        }
 
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            var db = new DbOperations();
+            db.DeleteEmployee(id);
+            return RedirectToAction("List");
         }
 
 
@@ -84,5 +133,7 @@ namespace WebUi.Controllers
 
             return list;
         }
+        
+        
     }
 }

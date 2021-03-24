@@ -83,7 +83,7 @@ namespace DataAccess
         {
             using(SqlConnection openCon=new SqlConnection(conString))
             {
-                string sql = $@"delete from EmployeeInformation where Id = {id})";
+                string sql = $"delete from EmployeeInformation where Id = {id}";
 
                 using(SqlCommand cmd = new SqlCommand(sql))
                 {
