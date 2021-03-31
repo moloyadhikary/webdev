@@ -1,7 +1,32 @@
-﻿
+﻿@model WebUi.Models.Employee
+
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">Details for: <b>@Model.FirstName @Model.LastName</b></div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">Employee Id: @Model.EmployeeId</li>
+            <li class="list-group-item">First Name: @Model.FirstName</li>
+            <li class="list-group-item">Last Name: @Model.LastName</li>
+            <li class="list-group-item">Department: @Model.DepartmentName</li>
+            <li class="list-group-item">Joining Date: @string.Format("{0:MMMM dd, yyyy}", Model.JoiningDate)</li>
+            <li class="list-group-item">Basic Salary: $@Model.BasicSalary</li>
+
+            <li class="list-group-item">
+                Active: @if (Model.IsCurrent == true)
+                {
+                    <span class="text-success"><b>Yes</b></span>
+                }
+                else
+                {
+                    <span class="text-danger"><b>No</b></span>
+                }
+                </ li >
+        </ul>
+    </div>
+</div>
 

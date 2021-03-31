@@ -84,25 +84,52 @@ namespace WebUi.Controllers
         [HttpPost]
         public ActionResult Create2(CreateEmployeeModel model)
         {
-            var departments = GetDepartments();
-            ViewBag.DepartmentList = new SelectList(departments, "Id", "Name");
-
-
-            if (!ModelState.IsValid)
+            try
             {
-                TempData["Message"] = "Input error found";
-                return View(model);
+                var departments = GetDepartments();
+                ViewBag.DepartmentList = new SelectList(departments, "Id", "Name");
+                if (!ModelState.IsValid)
+                {
+                    TempData["Message"] = "Input error found";
+                    return View(model);
+                }
+                var db = new DbOperations();
+                db.InsertEmployee(model.FirstName, model.LastName, model.EmployeeId, model.DepartmentId, model.Salary);
             }
-            
-            var db = new DbOperations();
-            db.InsertEmployee(model.FirstName, model.LastName, model.EmployeeId, model.DepartmentId, model.Salary);
-            
+            catch (Exception e)
+            {
+                TempData["Message"] = e.Message;
+            }
             return RedirectToAction("List");
         }
 
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View();
+            var db = new DbOperations();
+            var data = db.GetEmployeeDetailsById(id);
+            var employee = new Employee();
+
+            if (data.Rows.Count > 0)
+            {
+                employee.BasicSalary = Convert.ToDecimal(data.Rows[0]["BasicSalary"]); 
+                employee.DepartmentId = Convert.ToInt32(data.Rows[0]["DepartmentId"]);
+                employee.DepartmentName = Convert.ToString(data.Rows[0]["DepartmentName"]);
+                employee.EmployeeId = Convert.ToString(data.Rows[0]["EmployeeId"]);
+                employee.FirstName = Convert.ToString(data.Rows[0]["FirstName"]);
+                employee.Id = Convert.ToInt32(data.Rows[0]["Id"]);
+                employee.IsCurrent = Convert.ToBoolean(data.Rows[0]["IsCurrent"]);
+                employee.JoiningDate = Convert.ToDateTime(data.Rows[0]["JoiningDate"]);
+                employee.LastName = Convert.ToString(data.Rows[0]["LastName"]);
+                
+                return View(employee);
+            }
+            else
+            {
+                TempData["Message"] = "No employee found";
+                return RedirectToAction(nameof(List));
+            }
+           
         }
 
 

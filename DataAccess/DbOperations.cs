@@ -36,6 +36,32 @@ namespace DataAccess
 
             return dt;
         }
+        
+        public DataTable GetEmployeeDetailsById(int id)
+        {
+            DataTable dt = new DataTable();
+
+            using(SqlConnection openCon=new SqlConnection(conString))
+            {
+                string sql = $@"select 
+	                            e.*
+	                            ,d.Name DepartmentName
+                            from
+	                            EmployeeInformation e
+	                            left join Departments d on e.DepartmentId = d.Id
+                            where e.id = {id}";
+
+                using(SqlCommand cmd = new SqlCommand(sql))
+                {
+                    cmd.Connection=openCon;
+                    openCon.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
 
         public DataTable GetAllDepartments()
         {
