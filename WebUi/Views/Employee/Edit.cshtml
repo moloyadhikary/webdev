@@ -1,0 +1,56 @@
+﻿@model WebUi.Models.FormModels.EditEmployeeModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<br />
+<form method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">Edit existing employee</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        @Html.HiddenFor(model=>model.Id)
+                        @Html.DisplayNameFor(model => model.FirstName)
+                        @Html.TextBoxFor(model => model.FirstName, new {@class = "form-control"})
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        @Html.DisplayNameFor(model => model.LastName)
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        @Html.DisplayNameFor(model => model.EmployeeId)
+                        @Html.TextBoxFor(model => model.EmployeeId, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        @Html.DisplayNameFor(model => model.DepartmentId)
+                        @Html.DropDownList("DepartmentId", (IEnumerable<SelectListItem>)ViewBag.DepartmentList, new { @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        @Html.DisplayNameFor(model => model.Salary)
+                        @Html.TextBoxFor(model => model.Salary, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <br />
+                <br />
+                <button type="submit" class="btn btn-success">Save Data</button>
+            </div>
+        </div>
+    </div>
+</form>
+

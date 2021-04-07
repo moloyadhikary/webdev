@@ -120,15 +120,38 @@ namespace DataAccess
             }
         }
 
-        public void UpdateEmployee(int id, string name)
+        public void UpdateEmployee(int id, string firstName, string lastName, decimal salary, int departmentId, string employeeId)
         {
             using(SqlConnection openCon=new SqlConnection(conString))
             {
-                string sql = $@"update EmployeeInformation set FirstName = '{name}' where Id = {id}";
+                string sql = $@"update EmployeeInformation set 
+	                                FirstName = '{firstName}',
+	                                LastName = '{lastName}',
+	                                EmployeeId = '{employeeId}',
+	                                DepartmentId={departmentId},
+	                                BasicSalary = '{salary}'
+                                where Id = {id}";
 
                 using(SqlCommand cmd = new SqlCommand(sql))
                 {
                     cmd.Connection=openCon;
+                    openCon.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateEmployeeStatus(int id, int status)
+        {
+            using (SqlConnection openCon = new SqlConnection(conString))
+            {
+                string sql = $@"update EmployeeInformation set 
+	                                IsCurrent = {status}
+                                where Id = {id}";
+
+                using (SqlCommand cmd = new SqlCommand(sql))
+                {
+                    cmd.Connection = openCon;
                     openCon.Open();
                     cmd.ExecuteNonQuery();
                 }

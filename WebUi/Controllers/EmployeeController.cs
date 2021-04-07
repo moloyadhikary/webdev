@@ -141,6 +141,65 @@ namespace WebUi.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var db = new DbOperations();
+            var data = db.GetEmployeeDetailsById(id);
+            var employee = new EditEmployeeModel();
+            if (data.Rows.Count > 0)
+            {
+                employee.Salary = Convert.ToDecimal(data.Rows[0]["BasicSalary"]);
+                employee.DepartmentId = Convert.ToInt32(data.Rows[0]["DepartmentId"]);
+                employee.EmployeeId = Convert.ToString(data.Rows[0]["EmployeeId"]);
+                employee.FirstName = Convert.ToString(data.Rows[0]["FirstName"]);
+                employee.Id = Convert.ToInt32(data.Rows[0]["Id"]);
+                employee.LastName = Convert.ToString(data.Rows[0]["LastName"]);
+
+                var departments = GetDepartments();
+                ViewBag.DepartmentList = new SelectList(departments, "Id", "Name");
+                return View(employee);
+            }
+            else
+            {
+                TempData["Message"] = "No employee found";
+                return RedirectToAction(nameof(List));
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(EditEmployeeModel model)
+        {
+            try
+            {
+                var departments = GetDepartments();
+                ViewBag.DepartmentList = new SelectList(departments, "Id", "Name");
+                if (!ModelState.IsValid)
+                {
+                    TempData["Message"] = "Input error found";
+                    return View(model);
+                }
+                var db = new DbOperations();
+                db.UpdateEmployee(model.Id, model.FirstName, model.LastName, model.Salary, model.DepartmentId, model.EmployeeId);
+            }
+            catch (Exception e)
+            {
+                TempData["Message"] = e.Message;
+            }
+            return RedirectToAction("List");
+        }
+
+
+        [HttpGet]
+        public ActionResult ChangeStatus(int id, int status)
+        {
+            var db = new DbOperations();
+            db.UpdateEmployeeStatus(id, status);
+            return RedirectToAction(nameof(List));
+        }
+
+
         public List<Department> GetDepartments()
         {
             var db = new DbOperations();

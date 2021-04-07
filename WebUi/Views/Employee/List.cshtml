@@ -20,6 +20,7 @@
         <th>Full Name</th>
         <th>Department</th>
         <th class="text-right">Salary</th>
+        <th>Active</th>
     </tr>
     </thead>
     <tbody>
@@ -28,7 +29,16 @@
         <tr>
             <td>@e.Id</td>
             <td>
-                <a href="~/Employee/Delete?id=@e.Id">Delete</a>
+                <a href="~/Employee/Delete?id=@e.Id" class="text-danger">Delete</a> &nbsp;
+                <a href="~/Employee/Edit?id=@e.Id">Edit</a> &nbsp;
+                @if (e.IsCurrent == true)
+                {
+                    <a href="~/Employee/ChangeStatus?id=@e.Id&status=0" class="text-danger">Inactivate</a>
+                }
+                else
+                {
+                    <a href="~/Employee/ChangeStatus?id=@e.Id&status=1" class="text-success">Activate</a>
+                }
             </td>
             <td>
                 <a href="~/Employee/Details?id=@e.Id">@e.EmployeeId</a>
@@ -36,6 +46,16 @@
             <td>@e.FirstName @e.LastName</td>
             <td>@e.DepartmentName</td>
             <td class="text-right">$ @e.BasicSalary</td>
+            <td>
+                @if (e.IsCurrent == true)
+                {
+                    <span class="text-success"><b>Yes</b></span>
+                }
+                else
+                {
+                    <span class="text-danger"><b>No</b></span>
+                }
+            </td>
         </tr>
     }
     </tbody>

@@ -17,7 +17,7 @@ namespace DataHandleProject
             DbOperations dbOperations = new DbOperations();
             //insertData.InsertEmployee("Tahsan", "Khan", "E112", 1, 20000);
             
-            dbOperations.UpdateEmployee(1, "ABCD");
+            //dbOperations.UpdateEmployee(1, "ABCD");
             
             ReadData:
             //GetData getData = new GetData();
